@@ -1,4 +1,4 @@
-export const APIURL = "http://localhost:3000/api/products";
+export const APIURL = "https://kanap-backed.onrender.com/api/products";
 
 export const regexs = {
     alpha: {
