@@ -266,3 +266,52 @@ footer .footerSecondary {
 		width: 75%;
 	}
 }
+
+/*******/
+/*Modal*/
+/*******/
+
+.modal__backdrop {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0,0,0,0.5);
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+.modal__backdrop.show {
+	pointer-events: all;
+	opacity: 1;
+}
+.modal {
+	width: 500px;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	color: var(--text-color);
+}
+.modal > div {
+	padding: 1rem;
+}
+.modal__footer {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 5px;
+}
+
+.modal button {
+	padding: 10px;
+	cursor: pointer;
+	color: var(--footer-secondary-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #767676;
+    text-align: center;
+    text-align-last: center;
+}

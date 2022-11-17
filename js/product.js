@@ -1,5 +1,5 @@
 import { APIURL } from "./config.js";
-import { AJAX, CartModel } from "./helpers.js";
+import { AJAX, CartModel, Modal } from "./helpers.js";
 
 class Product {
     imageContainer = document.querySelector(".item__img");
@@ -12,12 +12,6 @@ class Product {
 
     constructor(productId) {
         this._init(productId);
-    }
-
-    async _init(productId) {
-        this.product = await AJAX(`${APIURL}/${productId}`);
-        this._renderProduct();
-        this._addToCart_handler();
     }
 
     _renderProduct() {
@@ -38,7 +32,12 @@ class Product {
             const cart = new CartModel();
             cart.addToCart({ id: this.product._id, color, quantity });
         })
+    }
 
+    async _init(productId) {
+        this.product = await AJAX(`${APIURL}/${productId}`);
+        this._renderProduct();
+        this._addToCart_handler();
     }
 }
 
