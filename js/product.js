@@ -18,6 +18,7 @@ class Product {
         this.imageContainer.insertAdjacentHTML("afterbegin", `
             <img src="${this.product.imageUrl}" alt="${this.product.altTxt}">
         `);
+        document.title = this.product.name;
         this.titleContainer.innerHTML = this.product.name;
         this.priceContainer.innerHTML = this.product.price;
         this.descriptionContainer.innerHTML = this.product.description;
