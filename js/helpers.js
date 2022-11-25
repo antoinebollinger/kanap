@@ -30,7 +30,13 @@ export class Modal {
                     <div class="modal__header"><strong>Kanap indique :</strong></div>
                     <div class="modal__body"></div>
                     <div class="modal__footer">
-                        <button class="modal__hide">Fermer</button>
+                        <div class="modal__footer__close">
+                            <button class="modal__hide">Fermer</button>
+                        </div>
+                        <div class="modal__footer__confirm hidden">            
+                            <button class="modal__hide">Annuler</button>
+                            <button class="modal__confirm">Valider</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -43,11 +49,8 @@ export class Modal {
     }
 
     async setConfirm() {
-        this.modal.querySelector(".modal__footer").innerHTML = "";
-        this.modal.querySelector(".modal__footer").insertAdjacentHTML("beforeend", `
-            <button class="modal__hide">Annuler</button>
-            <button class="modal__confirm">Valider</button>
-        `);
+        this.modal.querySelector(".modal__footer__close").classList.add("hidden");
+        this.modal.querySelector(".modal__footer__confirm").classList.remove("hidden");
         return new Promise((resolve, reject) => {
             document.querySelectorAll(".modal__hide").forEach(button => button?.addEventListener("click", () => {
                 this.hideModal();
@@ -61,16 +64,20 @@ export class Modal {
     }
 
     showModal(text = "") {
-        this.setText(text);
         this.modal.classList.add("show");
+
+        this.setText(text);
+
         return this;
     }
 
     hideModal() {
         this.modal.classList.remove("show");
-        setTimeout(() => {
-            this.setText();
-        }, 500);
+
+        this.setText();
+        this.modal.querySelector(".modal__footer__close").classList.remove("hidden");
+        this.modal.querySelector(".modal__footer__confirm").classList.add("hidden");
+
         return this;
     }
 
@@ -113,6 +120,7 @@ export class CartModel {
                     await this.modal.showModal("Déjà présent dans le panier. Voulez-vous ajouter la quantité à la quantité déjà présente ?").setConfirm();
                     const tmp = parseInt(alreadyInTheCart.quantity) + +product.quantity;
                     alreadyInTheCart.quantity = tmp;
+                    this.modal.showModal(`La quantité a bien été modifiée.<br/><a href="./cart.html">Voir mon panier</a>`);
                 } catch (error) {
                     console.log("non");
                 }

@@ -315,3 +315,7 @@ footer .footerSecondary {
     text-align: center;
     text-align-last: center;
 }
+
+.hidden {
+	display: none;
+}

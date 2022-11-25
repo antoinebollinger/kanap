@@ -1,5 +1,5 @@
 import { APIURL } from "./config.js";
-import { AJAX, CartModel, Modal } from "./helpers.js";
+import { AJAX, CartModel } from "./helpers.js";
 
 class Product {
     imageContainer = document.querySelector(".item__img");
